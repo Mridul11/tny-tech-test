@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const dotenv = require('dotenv')
 const webpack = require('webpack');
 
-
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
@@ -24,7 +23,17 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          'style-loader', // creates style nodes from JS strings
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+            options: {
+              importLoaders: 1
+            }
+          },
+          'postcss-loader', // post process the compiled CSS
+          'sass-loader' // compiles Sass to CSS, using Node Sass by default
+        ]
       }
     ]
   },
