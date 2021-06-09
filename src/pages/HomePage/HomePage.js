@@ -9,25 +9,37 @@ const HomeWrapper = styled.div`
 `
 const HomePage = () => {
     const [articleData, articleDataSet] = useState({});
-    const [searchTerm, searchTermSet ] = useState("");
+    const [articleArrayOnSearch,articleArrayOnSearchSet ] = useState([]);
+    const [searchTerm, searchTermSet] = useState("");
+    const [initialDataLength, initialDataLengthSet] = useState(5);
 
     useEffect(() => axios.get(process.env.REACT_APP_NEWS_URL)
-        .then(response => articleDataSet(response.data)), [articleData.length])
+        .then(response => articleDataSet(response.data)), [])
 
     const handleFilterArticle = (e) => {
         searchTermSet(e.target.value);
+        const oldData = articleData?.articles;
         let newArr = articleData.articles.filter(val => val.title.toLowerCase().indexOf(searchTerm.toLocaleLowerCase()) !== -1);
-        // console.log("newArr", newArr);
-        articleDataSet({ ...articleData, articles: newArr});
+        console.log("newArr", newArr);
+        if(searchTerm.length > 0){
+            articleArrayOnSearchSet(newArr);
+        }
     }
 
-    console.log(articleData, searchTerm);
+    const handleLoadMore = (e) => {
+        e.preventDefault();
+        initialDataLengthSet(prev => prev + 5)
+        console.log(initialDataLength);
+        articleDataSet({...articleData, articles: articleData.articles});
+    }
+
+    console.log(articleData, searchTerm, initialDataLength);
     return (
-        <div>
+        <div style={{ marginTop: 100 }}>
             <div class="ui fluid icon input">
-                <input 
-                    type="text" 
-                    placeholder="Type to search" 
+                <input
+                    type="text"
+                    placeholder="Type to search"
                     value={searchTerm}
                     onChange={(e) => handleFilterArticle(e)}
                 />
@@ -35,7 +47,22 @@ const HomePage = () => {
             </div>
 
             <br />
-            {articleData.articles && articleData.articles.length > 0 ? <ArticleListComponent articleData={articleData} />
+            {articleData.status == "ok" &&
+                articleData.articles.length > 0 ?
+                <div>
+                    <ArticleListComponent
+                        articleData={ searchTerm === "" ? articleData.articles : articleArrayOnSearch}
+                        initialDataLength={initialDataLength}
+                        initialDataLengthSet={initialDataLengthSet}
+                    />
+                    <br />
+                    <button
+                        onClick={(e) => handleLoadMore(e)}
+                        className="ui primary button right"
+                    >
+                        Load More
+                    </button>
+                </div>
                 :
                 <div className="">
                     <div className="ui active inverted dimmer">

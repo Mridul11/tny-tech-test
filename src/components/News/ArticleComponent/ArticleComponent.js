@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ArticleComponent = ({idx, obj }) => {
-    return <div className="ui card" style={{ maxWidth: "100%", minWidth: "100%" }} >
+    return <div 
+    key={idx}
+    className="ui card" style={{ maxWidth: "100%", minWidth: "100%" }}>
         <div className="content" style={{ padding: 0 }}>
             <div className="ui items">
                 <div className="item">

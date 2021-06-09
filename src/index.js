@@ -11,10 +11,10 @@ const Component = () =>
   <div className="ui container">
     <Router>
       <HeaderComponent />
-      <div style={{ marginTop: "15%" }}>
+      <Switch style={{ marginTop: "10%" }}>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/:id" component={ShowArticleComponent} />
-      </div>
+      </Switch>
       <FooterComponent />
     </Router>
   </div>

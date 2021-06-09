@@ -3,9 +3,8 @@ import "./HeaderComponent.scss";
 import { Link } from "react-router-dom";
 
 const HeaderComponent = () => <div
-    className="ui fixed inverted menu homepage-header"
->
-    <div>
+    className="ui fixed inverted menu homepage-header">
+    <div className="ui container">
         <Link to="/" className="header item">
             Conde Nast Assignment
         </Link>
