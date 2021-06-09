@@ -1,5 +1,9 @@
 const path = require('path');
 const babelConfig = require('./babel.config.json');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const dotenv = require('dotenv')
+const webpack = require('webpack');
+
 
 module.exports = {
   mode: 'development',
@@ -23,5 +27,15 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed)
+    }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      filename: "./index.html",
+    }),
+  ],
+  devServer: {},
 };
