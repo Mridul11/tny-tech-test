@@ -20,3 +20,5 @@ app.get("/articles", async function (req, res) {
 app.listen(port, function () {
     console.log("App is listening on " + port);
 });
+
+module.exports = app;
