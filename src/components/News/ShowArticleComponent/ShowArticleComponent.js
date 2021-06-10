@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ShowArticleComponent = ({ location: { obj } }) => {
-    return <div className="ui link cards" style={{ marginTop: 100 }}>
-        
+    return obj && <div className="ui link cards" style={{ marginTop: 100 }} data-testid="show-article-test">
         <div className="card" style={{ maxWidth: "100%", minWidth: "70%", minHeight: "30%", maxHeight: "70%" }}>
         <div className="extra content">
                 <Link to="/">

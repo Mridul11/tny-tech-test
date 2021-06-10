@@ -18,25 +18,25 @@ const FooterComponent = () => <div
         padding: '3%',
         marginTop: '100px',
      }}
-    class="ui inverted vertical footer segment">
-      <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">About</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Sitemap</a>
-            <a href="#" class="item">Contact Us</a>
+    className="ui inverted vertical footer segment" data-testid="footer-start">
+      <div className="ui stackable inverted divided equal height stackable grid">
+        <div className="three wide column">
+          <h4 className="ui inverted header">About</h4>
+          <div className="ui inverted link list">
+            <a href="#" className="item">Sitemap</a>
+            <a href="#" className="item">Contact Us</a>
           </div>
         </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Services</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Banana Pre-Order</a>
-            <a href="#" class="item">DNA FAQ</a>
-            <a href="#" class="item">How To Access</a>
+        <div className="three wide column">
+          <h4 className="ui inverted header">Services</h4>
+          <div className="ui inverted link list">
+            <a href="#" className="item">Banana Pre-Order</a>
+            <a href="#" className="item">DNA FAQ</a>
+            <a href="#" className="item">How To Access</a>
           </div>
         </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">Footer Header</h4>
+        <div className="seven wide column">
+          <h4 className="ui inverted header">Footer Header</h4>
           <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
         </div>
       </div>

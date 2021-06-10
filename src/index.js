@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import HomePage from './pages/HomePage/HomePage';
 import HeaderComponent from './components/Header/HeaderComponent';
@@ -10,12 +10,12 @@ import ShowArticleComponent from './components/News/ShowArticleComponent/ShowArt
 const Component = () =>
   <div className="ui container">
     <Router>
-      <HeaderComponent />
-      <Switch style={{ marginTop: "10%" }}>
+      <div style={{ marginTop: "10%" }}>
+        <Route path="" component={HeaderComponent} />
         <Route exact path="/" component={HomePage} />
         <Route exact path="/:title" component={ShowArticleComponent} />
-      </Switch>
-      <FooterComponent />
+      <Route path="" component={ FooterComponent} />
+      </div>
     </Router>
   </div>
 

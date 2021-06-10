@@ -20,7 +20,6 @@ const HomePage = () => {
         searchTermSet(e.target.value);
         const oldData = articleData?.articles;
         let newArr = articleData.articles.filter(val => val.title.toLowerCase().indexOf(searchTerm.toLocaleLowerCase()) !== -1);
-        console.log("newArr", newArr);
         if (searchTerm.length > 0) {
             articleArrayOnSearchSet(newArr);
         }
@@ -33,7 +32,7 @@ const HomePage = () => {
 
     console.log(articleData, searchTerm, initialDataLength);
     return (
-        <div style={{ marginTop: 100 }}>
+        <div style={{ marginTop: "10%" }} data-testid="filter_input">
             <div className="ui fluid icon input">
                 <input
                     type="text"
@@ -47,7 +46,7 @@ const HomePage = () => {
             <br />
             {articleData.status == "ok" &&
                 articleData.articles.length > 0 ?
-                <div>
+                <div data-testid="article-list">
                     <ArticleListComponent
                         articleData={searchTerm === "" ? articleData.articles.slice(0,initialDataLength) : articleArrayOnSearch}
                         initialDataLength={initialDataLength}

@@ -6,4 +6,5 @@ step3: yarn \
 ste4: cd server \
 step5: yarn \
 ste6: cd .. \
-step7: yarn dev \
+step7: yarn test \
+step7: yarn dev 

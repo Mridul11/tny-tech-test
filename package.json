@@ -7,7 +7,7 @@
     "client": "webpack serve",
     "server": "cd ./server && yarn start",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --env=jsdom",
     "build": "webpack"
   },
   "repository": {
@@ -26,9 +26,13 @@
     "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
+    "@testing-library/react": "^11.2.7",
+    "@types/jest": "^26.0.23",
     "babel-loader": "^8.2.2",
     "concurrently": "^6.2.0",
     "css-loader": "^5.2.6",
+    "jest": "^27.0.4",
+    "prettier": "^2.3.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2"

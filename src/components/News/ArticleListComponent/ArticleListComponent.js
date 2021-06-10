@@ -1,11 +1,12 @@
 import React from 'react';
 import ArticleComponent from '../ArticleComponent/ArticleComponent';
 
-const ArticleListComponent = ({ articleData, initialDataLength }) => {
-    return  articleData.length > 0 ?
+const ArticleListComponent = ({ articleData }) => {
+    return articleData && articleData.length > 0 ?
         articleData.map(
             (obj, index) => <div key={index}>
                     <ArticleComponent 
+                        data-testid="article-list-test"
                         key={index} 
                         idx={index} 
                         obj={obj} 
@@ -13,9 +14,9 @@ const ArticleListComponent = ({ articleData, initialDataLength }) => {
                         <br />
                 </div>)
         :
-        <div class="ui segment">
-            <div class="ui active inverted dimmer">
-                <div class="ui large text loader">Loading</div>
+        <div className="ui segment">
+            <div className="ui active inverted dimmer" data-testid="article-list-test">
+                <div className="ui large text loader">Loading</div>
             </div>
             <p></p>
             <p></p>

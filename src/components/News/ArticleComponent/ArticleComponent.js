@@ -1,18 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ArticleComponent = ({ idx, obj }) => {
-    return <div
+const ArticleComponent = ({ idx, obj }) => (
+obj ? <div
         key={idx}
-        className="ui card" style={{ maxWidth: "100%", minWidth: "100%" }}>
+        className="ui card" style={{ maxWidth: "100%", minWidth: "100%" }}
+        data-testid="article-start"
+        >
         <div className="content" style={{ padding: 0 }}>
+            
             <div className="ui items">
                 <div className="item">
                     <div className="ui medium image">
-                        <img src={obj.urlToImage} />
+                        <img 
+                            src={obj.urlToImage} 
+                        />
                     </div>
                     <div className="content" style={{ padding: "1rem", }}>
-                        <Link className="header" to={{ pathname: `/${obj.title}`, obj }}>{obj.title}</Link>
+                        <Link className="header" to={{ pathname: `/${obj.title}`, obj }}>{obj.title.slice(0,50)} .....</Link>
                         <div className="meta">
                             <span className="cinema">{obj.author}</span>
                         </div>
@@ -28,5 +33,6 @@ const ArticleComponent = ({ idx, obj }) => {
             </div>
         </div>
     </div>
-}
+     : <p data-testid="article-start" >Loading... </p>
+)
 export default ArticleComponent;
