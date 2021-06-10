@@ -9,7 +9,7 @@ const HomeWrapper = styled.div`
 `
 const HomePage = () => {
     const [articleData, articleDataSet] = useState({});
-    const [articleArrayOnSearch,articleArrayOnSearchSet ] = useState([]);
+    const [articleArrayOnSearch, articleArrayOnSearchSet] = useState([]);
     const [searchTerm, searchTermSet] = useState("");
     const [initialDataLength, initialDataLengthSet] = useState(5);
 
@@ -21,29 +21,27 @@ const HomePage = () => {
         const oldData = articleData?.articles;
         let newArr = articleData.articles.filter(val => val.title.toLowerCase().indexOf(searchTerm.toLocaleLowerCase()) !== -1);
         console.log("newArr", newArr);
-        if(searchTerm.length > 0){
+        if (searchTerm.length > 0) {
             articleArrayOnSearchSet(newArr);
         }
     }
 
     const handleLoadMore = (e) => {
-        e.preventDefault();
         initialDataLengthSet(prev => prev + 5)
-        console.log(initialDataLength);
-        articleDataSet({...articleData, articles: articleData.articles});
+        articleDataSet({ ...articleData, articles: articleData.articles });
     }
 
     console.log(articleData, searchTerm, initialDataLength);
     return (
         <div style={{ marginTop: 100 }}>
-            <div class="ui fluid icon input">
+            <div className="ui fluid icon input">
                 <input
                     type="text"
                     placeholder="Type to search"
                     value={searchTerm}
                     onChange={(e) => handleFilterArticle(e)}
                 />
-                <i class="search icon"></i>
+                <i className="search icon"></i>
             </div>
 
             <br />
@@ -51,7 +49,7 @@ const HomePage = () => {
                 articleData.articles.length > 0 ?
                 <div>
                     <ArticleListComponent
-                        articleData={ searchTerm === "" ? articleData.articles : articleArrayOnSearch}
+                        articleData={searchTerm === "" ? articleData.articles.slice(0,initialDataLength) : articleArrayOnSearch}
                         initialDataLength={initialDataLength}
                         initialDataLengthSet={initialDataLengthSet}
                     />

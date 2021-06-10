@@ -20,7 +20,7 @@ const ArticleComponent = ({idx, obj }) => {
                             <p>{obj.content}</p>
                         </div>
                         <div className="extra">
-                            <div className="ui label">IMAX</div>
+                            <div className="ui label">{obj.source?.name}</div>
                             <div className="ui label"><i className="globe icon"></i> Additional Languages</div>
                         </div>
                     </div>

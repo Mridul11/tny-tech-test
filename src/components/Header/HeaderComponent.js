@@ -6,7 +6,7 @@ const HeaderComponent = () => <div
     className="ui fixed inverted menu homepage-header">
     <div className="ui container">
         <Link to="/" className="header item">
-            Conde Nast Assignment
+            THE NEWYORKER
         </Link>
         <div className="item right">
             <a href="#" className="item">FEED</a>
