@@ -13,7 +13,7 @@ const Component = () =>
       <HeaderComponent />
       <Switch style={{ marginTop: "10%" }}>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/:id" component={ShowArticleComponent} />
+        <Route exact path="/:title" component={ShowArticleComponent} />
       </Switch>
       <FooterComponent />
     </Router>

@@ -15,6 +15,7 @@ const FooterComponent = () => <div
         maxWidth: "100%",
         minWidth: "100vw",
         left: 0,
+        padding: '3%',
         marginTop: '100px',
      }}
     class="ui inverted vertical footer segment">
