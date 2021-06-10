@@ -4,7 +4,9 @@
   "description": "TNY Technical Evaluation",
   "private": "true",
   "scripts": {
-    "start": "webpack serve",
+    "client": "webpack serve",
+    "server": "cd ./server && yarn start",
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
@@ -18,12 +20,14 @@
     "url": "https://github.com/CondeNast/tny-tech-test/issues"
   },
   "homepage": "https://github.com/CondeNast/tny-tech-test#readme",
+  "proxy": "http://localhost:4000",
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
+    "concurrently": "^6.2.0",
     "css-loader": "^5.2.6",
     "style-loader": "^2.0.0",
     "webpack": "^5.38.1",
@@ -37,6 +41,7 @@
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
     "node-sass": "^6.0.0",
+    "nodemon": "^2.0.7",
     "postcss-loader": "^5.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
