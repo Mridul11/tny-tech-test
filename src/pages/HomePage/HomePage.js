@@ -1,36 +1,28 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import ArticleListComponent from '../../components/News/ArticleListComponent/ArticleListComponent';
-import axios from 'axios';
-import styled from 'styled-components';
+import useFetchData from '../../custom-hooks/useFetchData';
 
-const HomeWrapper = styled.div`
-    margin-top: 100px;
-    margin-bottom: 100px;
-`
 
-const ShowSnackOnError = () => <div class="ui negative message">
-    <i class="close icon"></i>
-    <div class="header">
+const ShowSnackOnError = () => <div className="ui negative message">
+    <i className="close icon"></i>
+    <div className="header">
         OOPS
     </div>
     <p>This usuablly does not hapen! but i think i messed up :( </p>
 </div>
 
-const HomePage = () => {
-    const [articleData, articleDataSet] = useState({});
+const HomePageMemo = () => {
     const [articleArrayOnSearch, articleArrayOnSearchSet] = useState([]);
     const [searchTerm, searchTermSet] = useState("");
     const [initialDataLength, initialDataLengthSet] = useState(5);
 
-    useEffect(() => axios.get(process.env.REACT_APP_NEWS_URL)
-        .then(response => articleDataSet(response.data))
-        .catch(err => articleDataSet({ err }))
-        , [])
+    const [articleData] = useFetchData(process.env.REACT_APP_NEWS_URL);
 
     const handleFilterArticle = (e) => {
         searchTermSet(e.target.value);
         const oldData = articleData?.articles;
-        let newArr = articleData.articles.filter(val => val.title.toLowerCase().indexOf(searchTerm.toLocaleLowerCase()) !== -1);
+        let newArr = articleData.articles.filter(val => val.title.toLowerCase().indexOf(
+            searchTerm.toLocaleLowerCase()) !== -1);
         if (searchTerm.length > 0) {
             articleArrayOnSearchSet(newArr);
         }
@@ -59,7 +51,9 @@ const HomePage = () => {
                 articleData.articles.length > 0 ?
                 <div data-testid="article-list">
                     <ArticleListComponent
-                        articleData={searchTerm === "" ? articleData.articles.slice(0, initialDataLength) : articleArrayOnSearch}
+                        articleData={searchTerm === "" ? 
+                        articleData.articles.slice(0, initialDataLength) 
+                        : articleArrayOnSearch}
                         initialDataLength={initialDataLength}
                         initialDataLengthSet={initialDataLengthSet}
                     />
@@ -88,4 +82,5 @@ const HomePage = () => {
         </div>
     )
 }
+const HomePage = React.memo(HomePageMemo);
 export default HomePage;
