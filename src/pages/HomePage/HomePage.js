@@ -8,11 +8,12 @@ const HomeWrapper = styled.div`
     margin-bottom: 100px;
 `
 
-const ShowSnackOnError = () => <div className="ui message">
-    <div className="header">
-        Error
+const ShowSnackOnError = () => <div class="ui negative message">
+    <i class="close icon"></i>
+    <div class="header">
+        OOPS
     </div>
-    <p>Oops I think i messed up!!!</p>
+    <p>This usuablly does not hapen! but i think i messed up :( </p>
 </div>
 
 const HomePage = () => {
