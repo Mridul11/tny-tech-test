@@ -7,6 +7,14 @@ const HomeWrapper = styled.div`
     margin-top: 100px;
     margin-bottom: 100px;
 `
+
+const ShowSnackOnError = () => <div className="ui message">
+    <div className="header">
+        Error
+    </div>
+    <p>Oops I think i messed up!!!</p>
+</div>
+
 const HomePage = () => {
     const [articleData, articleDataSet] = useState({});
     const [articleArrayOnSearch, articleArrayOnSearchSet] = useState([]);
@@ -14,7 +22,9 @@ const HomePage = () => {
     const [initialDataLength, initialDataLengthSet] = useState(5);
 
     useEffect(() => axios.get(process.env.REACT_APP_NEWS_URL)
-        .then(response => articleDataSet(response.data)), [])
+        .then(response => articleDataSet(response.data))
+        .catch(err => articleDataSet({ err }))
+        , [])
 
     const handleFilterArticle = (e) => {
         searchTermSet(e.target.value);
@@ -48,7 +58,7 @@ const HomePage = () => {
                 articleData.articles.length > 0 ?
                 <div data-testid="article-list">
                     <ArticleListComponent
-                        articleData={searchTerm === "" ? articleData.articles.slice(0,initialDataLength) : articleArrayOnSearch}
+                        articleData={searchTerm === "" ? articleData.articles.slice(0, initialDataLength) : articleArrayOnSearch}
                         initialDataLength={initialDataLength}
                         initialDataLengthSet={initialDataLengthSet}
                     />
@@ -61,14 +71,18 @@ const HomePage = () => {
                     </button>
                 </div>
                 :
-                <div className="">
-                    <div className="ui active inverted dimmer">
-                        <div className="ui large text loader">Loading</div>
+                articleData.err?.response.status !== 500
+                    ?
+                    <div className="">
+                        <div className="ui active inverted dimmer">
+                            <div className="ui large text loader">Loading</div>
+                        </div>
+                        <p></p>
+                        <p></p>
+                        <p></p>
                     </div>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                </div>
+                    :
+                    <ShowSnackOnError />
             }
         </div>
     )

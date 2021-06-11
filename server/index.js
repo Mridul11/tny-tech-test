@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const axios = require('axios');
 const cors = require('cors');
-dotenv.config({path: "./dev.env"});
+dotenv.config({ path: "./dev.env" });
 
 const app = express();
 const corsOptions = {
@@ -12,9 +12,15 @@ app.use(cors(corsOptions));
 
 const port = process.env.PORT || 4000;
 app.get("/articles", async function (req, res) {
-    const fetchedData = await axios.get(process.env.NEWS_URL);
-    const finalResponse = await fetchedData.data;
-    res.status(200).json(finalResponse);
+    console.log(process.env.NEWS_URL);
+    try {
+        const fetchedData = await axios.get(process.env.NEWS_URL);
+        const finalResponse = await fetchedData.data;
+        res.status(200).json(finalResponse);
+    } catch (e) {
+        res.status(500).json({error: e});
+    }
+
 });
 
 app.listen(port, function () {
