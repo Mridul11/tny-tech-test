@@ -8,7 +8,7 @@ const ShowSnackOnError = () => <div className="ui negative message">
     <div className="header">
         OOPS
     </div>
-    <p>This usuablly does not hapen! but i think i messed up :( </p>
+    <p>This usually does not happen! but i think i messed up :( </p>
 </div>
 
 const HomePageMemo = () => {
