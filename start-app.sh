@@ -4,3 +4,4 @@ cd server/
 yarn
 cd ..
 yarn dev
+google-chrome

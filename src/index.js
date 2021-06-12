@@ -14,7 +14,7 @@ const Component = () =>
         <Route path="" component={HeaderComponent} />
         <Route exact path="/" component={HomePage} />
         <Route exact path="/:title" component={ShowArticleComponent} />
-      <Route path="" component={ FooterComponent} />
+        <Route path="" component={ FooterComponent} />
       </div>
     </Router>
   </div>

@@ -3,9 +3,10 @@ const app = require("./index");
 const axios = require("axios");
 
 describe('GET Endpoints', () => {
-  it('should get a response of 500 on failure', async () => {
-    const res = await request(app).get('/articles')
-    expect(res.statusCode).toEqual(500)
+  test('should get a response of 500 on failure and 200 on success', async () => {
+    const res = await request(app).get('/articles');
+    if(res.ok === true) expect(res.statusCode).toEqual(200);
+    else
+     expect(res.statusCode).toEqual(500);
   })
-})
-
+});

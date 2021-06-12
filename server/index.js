@@ -12,7 +12,7 @@ app.use(cors(corsOptions));
 
 const port = process.env.PORT || 4000;
 app.get("/articles", async function (req, res) {
-    console.log(process.env.NEWS_URL);
+//    console.log(process.env.NEWS_URL, process.env.CORS_FE_URL);
     try {
         const fetchedData = await axios.get(process.env.NEWS_URL);
         const finalResponse = await fetchedData.data;
